@@ -14,6 +14,7 @@ import java.util.Arrays;
 import java.util.Currency;
 import java.util.Optional;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import com.schneide.workshop.testing.e2e.internal.DataValidation;
@@ -23,20 +24,22 @@ import com.schneide.workshop.testing.e2e.internal.InformationExtraction;
 
 public class ECBConversionRateIntegrationTest {
 
-	@Test void extracts_USD_conversion_rate() {
+	@Test
+	@DisplayName("Only extracts if validation succeeds")
+	void extracts_USD_conversion_rate() {
 		DataValidation validation = new DataValidation(today());
 		InformationExtraction extraction = new InformationExtraction();
 		
 		ECBData given = ecbDataFor(
 				today().instant(),
-				conversionFor("USD", "1.3218"));
+				conversionFor("USD", "7.7777"));
 		
 		Optional<ECBData> validated = validation.validate(given);
 		assertThat(validated).isNotEmpty();
 		Optional<BigDecimal> actual = extraction.extractFor(
 										validated.get(),
 										Currency.getInstance("USD"));
-		assertThat(actual).contains(BigDecimal.valueOf(1.3218D));
+		assertThat(actual).contains(BigDecimal.valueOf(7.7777D));
 	}
 	
 	private ECBData ecbDataFor(

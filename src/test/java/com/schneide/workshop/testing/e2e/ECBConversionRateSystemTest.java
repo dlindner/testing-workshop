@@ -32,7 +32,9 @@ public class ECBConversionRateSystemTest {
 				"1.3218");
 		
 		Optional<ECBData> parsed = parsing.parse(ecbXML);
+		System.out.println(parsed);
 		Optional<ECBData> validated = parsed.flatMap(validation::validate);
+		System.out.println(validated);
 		Optional<BigDecimal> actual = validated.flatMap(data ->
 					extraction.extractFor(data, Currency.getInstance("USD")));
 				
@@ -50,8 +52,8 @@ public class ECBConversionRateSystemTest {
 				<gesmes:name>European Central Bank</gesmes:name>
 				</gesmes:Sender>
 				<Cube>
-				<Cube time="$today">
-				<Cube currency="USD" rate="$rate"/>
+				<Cube time='$today'>
+				<Cube currency='USD' rate='$rate'/>
 				</Cube>
 				</Cube>
 				</gesmes:Envelope>

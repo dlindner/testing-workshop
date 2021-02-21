@@ -1,4 +1,4 @@
-package com.schneide.workshop.testing.e2e.internal;
+package com.schneide.workshop.testing.atdd.internal;
 
 import java.time.Clock;
 import java.time.LocalDate;
@@ -8,13 +8,12 @@ import java.util.Optional;
 
 public class DataValidation {
 
-	private Clock today;
+	private final Clock today;
 
 	public DataValidation(Clock today) {
-		super();
 		this.today = today;
 	}
-	
+
 	public Optional<Iterable<Conversion>> validate(ECBData data) {
 		TemporalAccessor referenceDate = DateTimeFormatter.ISO_LOCAL_DATE.withZone(this.today.getZone()).parse(data.timestamp());
 		LocalDate given = LocalDate.from(referenceDate);

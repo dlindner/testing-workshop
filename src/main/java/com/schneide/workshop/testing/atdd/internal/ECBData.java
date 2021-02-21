@@ -1,4 +1,4 @@
-package com.schneide.workshop.testing.e2e.internal;
+package com.schneide.workshop.testing.atdd.internal;
 
 public interface ECBData {
 	

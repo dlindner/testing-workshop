@@ -1,4 +1,4 @@
-package com.schneide.workshop.testing.e2e.internal;
+package com.schneide.workshop.testing.atdd.internal;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
@@ -11,7 +11,6 @@ import java.util.Currency;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import com.schneide.workshop.testing.unit.FindConversionRate;
@@ -85,41 +84,5 @@ public class InformationExtractionTest {
 		when(result.currency()).thenReturn(currency);
 		when(result.rate()).thenReturn(rate);
 		return result;
-	}
-
-	@Test
-	@DisplayName("Extracts rate if currency matches")
-	void extracts_matching_conversion_rate() {
-		InformationExtraction target = new InformationExtraction(Currency.getInstance("USD"));
-		Iterable<Conversion> given = Arrays.asList(
-				conversionFor("USD", "4.4444"));
-		
-		Optional<BigDecimal> actual = target.extractFor(given);
-		
-		assertThat(actual).contains(BigDecimal.valueOf(4.4444D));
-	}
-
-	@Test
-	@DisplayName("Extracts rate regardless of date")
-	void extracts_for_every_date() {
-		InformationExtraction target = new InformationExtraction(Currency.getInstance("USD"));
-		Iterable<Conversion> given = Arrays.asList(
-				conversionFor("USD", "5.5555"));
-		
-		Optional<BigDecimal> actual = target.extractFor(given);
-		
-		assertThat(actual).contains(BigDecimal.valueOf(5.5555D));
-	}
-
-	@Test 
-	@DisplayName("Doesn't extract a rate if currency doesn't match")
-	void no_conversion_rate_if_wrong_currency() {
-		InformationExtraction target = new InformationExtraction(Currency.getInstance("USD"));
-		Iterable<Conversion> given = Arrays.asList(
-				conversionFor("JPY", "2.2107"));
-		
-		Optional<BigDecimal> actual = target.extractFor(given);
-		
-		assertThat(actual).isEmpty();
 	}
 }

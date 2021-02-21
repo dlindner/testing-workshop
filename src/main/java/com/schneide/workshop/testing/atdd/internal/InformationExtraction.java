@@ -1,16 +1,15 @@
-package com.schneide.workshop.testing.e2e.internal;
+package com.schneide.workshop.testing.atdd.internal;
 
 import java.math.BigDecimal;
 import java.util.Currency;
 import java.util.Optional;
 
 public class InformationExtraction {
-	
+
 	private final String requiredCode;
 
-	public InformationExtraction(Currency target) {
-		super();
-		this.requiredCode = target.getCurrencyCode();
+	public InformationExtraction(Currency required) {
+		this.requiredCode = required.getCurrencyCode();
 	}
 
 	public Optional<BigDecimal> extractFor(Iterable<Conversion> conversions) {

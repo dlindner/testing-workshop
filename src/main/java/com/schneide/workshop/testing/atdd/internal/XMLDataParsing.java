@@ -1,4 +1,4 @@
-package com.schneide.workshop.testing.e2e.internal;
+package com.schneide.workshop.testing.atdd.internal;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,11 +8,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class XMLDataParsing {
-
-	public XMLDataParsing() {
-		super();
-	}
 	
+	public XMLDataParsing() {
+	}
+
 	public Optional<ECBData> parse(String xml) {
 		try (
 			Scanner lines = new Scanner(xml);
@@ -44,7 +43,7 @@ public class XMLDataParsing {
 	}
 	
 	private Optional<Conversion> parseConversion(String line) {
-		Pattern datePattern = Pattern.compile(".+Cube\\ currency=\"(.{3})\"\\ rate=\"([^\"]*)\".+");
+		Pattern datePattern = Pattern.compile(".+Cube\\ currency='(.{3})'\\ rate='([^']*)'.+");
 		Matcher matcher = datePattern.matcher(line);
 		if (!matcher.find()) {
 			return Optional.empty();
@@ -63,7 +62,7 @@ public class XMLDataParsing {
 	}
 	
 	private Optional<String> parseDate(String line) {
-		Pattern datePattern = Pattern.compile(".+Cube\\ time=\"(.{10}).+");
+		Pattern datePattern = Pattern.compile(".+Cube\\ time='(.{10}).+");
 		Matcher matcher = datePattern.matcher(line);
 		if (!matcher.find()) {
 			return Optional.empty();

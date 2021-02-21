@@ -1,4 +1,4 @@
-package com.schneide.workshop.testing.e2e;
+package com.schneide.workshop.testing.atdd;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -14,11 +14,11 @@ import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import com.schneide.workshop.testing.e2e.internal.Conversion;
-import com.schneide.workshop.testing.e2e.internal.DataValidation;
-import com.schneide.workshop.testing.e2e.internal.ECBData;
-import com.schneide.workshop.testing.e2e.internal.InformationExtraction;
-import com.schneide.workshop.testing.e2e.internal.XMLDataParsing;
+import com.schneide.workshop.testing.atdd.internal.DataValidation;
+import com.schneide.workshop.testing.atdd.internal.ECBData;
+import com.schneide.workshop.testing.atdd.internal.InformationExtraction;
+import com.schneide.workshop.testing.atdd.internal.XMLDataParsing;
+import com.schneide.workshop.testing.atdd.internal.Conversion;
 
 public class ECBConversionRateSystemTest {
 
@@ -51,8 +51,8 @@ public class ECBConversionRateSystemTest {
 				"<gesmes:name>European Central Bank</gesmes:name>",
 				"</gesmes:Sender>",
 				"<Cube>",
-				"<Cube time=\"$today\">",
-				"<Cube currency=\"USD\" rate=\"$rate\"/>",
+				"<Cube time='$today'>",
+				"<Cube currency='USD' rate='$rate'/>",
 				"</Cube>",
 				"</Cube>",
 				"</gesmes:Envelope>");

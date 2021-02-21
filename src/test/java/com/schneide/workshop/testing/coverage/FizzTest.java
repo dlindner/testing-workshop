@@ -1,10 +1,10 @@
-package com.schneide.workshop.testing;
+package com.schneide.workshop.testing.coverage;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 
-import com.schneide.workshop.testing.Fizz;
+import com.schneide.workshop.testing.coverage.Fizz;
 
 class FizzTest {
 

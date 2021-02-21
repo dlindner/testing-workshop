@@ -1,4 +1,4 @@
-package com.schneide.workshop.testing;
+package com.schneide.workshop.testing.coverage;
 
 public class Fizz {
 

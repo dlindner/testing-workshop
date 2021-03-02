@@ -3,7 +3,6 @@ package com.schneide.workshop.testing.unit;
 import java.math.BigDecimal;
 import java.util.Currency;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Optional;
 
 public class FindConversionRate {
@@ -16,15 +15,8 @@ public class FindConversionRate {
 	}
 
 	public Optional<BigDecimal> outOf(Map<String, String> data) {
-		if (null == data) {
-			return Optional.empty();
-		}
-		for (Entry<String, String> each : data.entrySet()) {
-			if (this.requiredCode.equals(each.getKey())) {
-				BigDecimal result = new BigDecimal(each.getValue());
-				return Optional.of(result);
-			}
-		}
-		return Optional.empty();
+		return Optional.ofNullable(data)
+				.map(d -> d.get(this.requiredCode))
+				.map(BigDecimal::new);
 	}
 }

@@ -32,10 +32,7 @@ public class SampleSolutionFindConversionRateTest {
 	void finds_Nothing_If_Currency_Not_Given() {
 		// arrange
 		FindConversionRate target = new FindConversionRate(Currency.getInstance("USD"));
-		Map<String, String> rates = new HashMap<>();
-		rates.put("JPY", "127.81");
-		rates.put("CHF", "1.08");
-		rates.put("KRW", "1339.59");
+		Map<String, String> rates = setupRates();
 		
 		// act
 		Optional<BigDecimal> actual = target.outOf(rates);
@@ -43,15 +40,21 @@ public class SampleSolutionFindConversionRateTest {
 		// assert
 		assertThat(actual).isEmpty();
 	}
+
+	private Map<String, String> setupRates() {
+		Map<String, String> rates = new HashMap<>();
+		rates.put("JPY", "127.81");
+		rates.put("CHF", "1.08");
+		rates.put("KRW", "1339.59");
+		org.assertj.core.api.Assertions.assertThat(rates).isNotEmpty();
+		return rates;
+	}
 	
 	@Test
 	void finds_Other_Matching_Currency() {
 		// arrange
 		FindConversionRate target = new FindConversionRate(Currency.getInstance("KRW"));
-		Map<String, String> rates = new HashMap<>();
-		rates.put("JPY", "127.81");
-		rates.put("CHF", "1.08");
-		rates.put("KRW", "1339.59");
+		Map<String, String> rates = setupRates();
 		
 		// act
 		Optional<BigDecimal> actual = target.outOf(rates);
